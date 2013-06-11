@@ -8,7 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * A warpper around the Mergely library - http://www.mergely.com/about.php
+ * A wrapper around the Mergely library - http://www.mergely.com/about.php
  */
 public class Mergely extends Composite {
 
@@ -26,6 +26,14 @@ public class Mergely extends Composite {
 
     private final boolean lineNumbers;
 
+    /**
+     *
+     * @param lhs Initial text for the left hand side
+     * @param lhsReadonly true if the left hand side should be readonly, and false otherwise
+     * @param rhs Initial text for the right hand side
+     * @param rhsReadonly true if the right hand side should be readonly, and false otherwise
+     * @param lineNumbers true if line number should be displayed, and false otherwise
+     */
     public Mergely(final String lhs, final boolean lhsReadonly, final String rhs, final boolean rhsReadonly, final boolean lineNumbers) {
         elementId =  MERGELY_DIV_ID_PREFIX + nextId++;
         this.lhs = lhs;
