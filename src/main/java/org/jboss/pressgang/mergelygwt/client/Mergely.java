@@ -82,6 +82,8 @@ public class Mergely extends Composite {
                 };
             }(this.@org.jboss.pressgang.mergelygwt.client.Mergely::rhs)
         });
+
+        $wnd.jQuery('#' + this.@org.jboss.pressgang.mergelygwt.client.Mergely::elementId).mergely('resize');
     }-*/;
 
     public native String getLhs() /*-{
