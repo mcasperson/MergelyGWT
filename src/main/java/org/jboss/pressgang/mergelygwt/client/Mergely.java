@@ -80,10 +80,7 @@ public class Mergely extends Composite {
                 return function(setValue) {
                     setValue(text);
                 };
-            }(this.@org.jboss.pressgang.mergelygwt.client.Mergely::rhs),
-            loaded: function() {
-                $wnd.jQuery('#' + this.@org.jboss.pressgang.mergelygwt.client.Mergely::elementId).mergely('resize');
-            }
+            }(this.@org.jboss.pressgang.mergelygwt.client.Mergely::rhs)
         });
 
 
@@ -95,5 +92,9 @@ public class Mergely extends Composite {
 
     public native String getRhs() /*-{
         return $wnd.jQuery('#' + this.@org.jboss.pressgang.mergelygwt.client.Mergely::elementId).mergely('get', 'rhs');
+    }-*/;
+
+    public native void resize() /*-{
+        return $wnd.jQuery('#' + this.@org.jboss.pressgang.mergelygwt.client.Mergely::elementId).mergely('resize');
     }-*/;
 }
