@@ -42,7 +42,7 @@ public class Mergely extends Composite {
         this.rhsReadonly = rhsReadonly;
         this.lineNumbers = lineNumbers;
 
-        final HTML html = new HTML("<div style=\"width: 100%; height: 100%;\" id=\"" + elementId + "\"");
+        final HTML html = new HTML("<div style=\"width: 100%; height: 100%;\" id=\"" + elementId + "\"></div>");
         initWidget(html);
     }
 
