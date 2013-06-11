@@ -42,7 +42,7 @@ public class Mergely extends Composite {
         this.rhsReadonly = rhsReadonly;
         this.lineNumbers = lineNumbers;
 
-        final HTML html = new HTML("<div style=\"width: 100%; height: 100%;\" id=\"" + elementId + "\"></div>");
+        final HTML html = new HTML("<div style=\"position: absolute; bottom: 0; top: 0; left: 0; right:0;\"><div id=\"" + elementId + "\"></div></div>");
         //final HTML html = new HTML("<div style=\"width: 100%; height: 100%; position: relative;\">"
         //        + "<div style=\"top: 0px; bottom: 0px; left: 0px; right: 0px;\" id=\"" + elementId + "\"></div>" + "</div>");
         initWidget(html);
@@ -69,6 +69,8 @@ public class Mergely extends Composite {
             cmsettings: { lineNumbers: this.@org.jboss.pressgang.mergelygwt.client.Mergely::lineNumbers },
             lhs_cmsettings: {readOnly: this.@org.jboss.pressgang.mergelygwt.client.Mergely::lhsReadonly},
             rhs_cmsettings: {readOnly: this.@org.jboss.pressgang.mergelygwt.client.Mergely::rhsReadonly},
+            width: 'auto',
+            height: 'auto',
             lhs: function(text) {
                 return function(setValue) {
                     setValue(text);
