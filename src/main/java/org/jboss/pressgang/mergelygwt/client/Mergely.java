@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 /**
  * A warpper around the Mergely library - http://www.mergely.com/about.php
  */
-public class Mergely extends Composite implements RequiresResize {
+public class Mergely extends Composite {
 
     private static final String MERGELY_DIV_ID_PREFIX = "mergely";
     private static final Logger LOGGER = Logger.getLogger(Mergely.class.getName());
@@ -19,25 +19,23 @@ public class Mergely extends Composite implements RequiresResize {
     /** The id of the div used to hold mergley */
     private final String elementId;
 
-    private String lhs;
-    private String rhs;
-    private boolean lhsReadonly;
-    private boolean rhsReadonly;
+    private final String lhs;
+    private final String rhs;
+    private final boolean lhsReadonly;
+    private final boolean rhsReadonly;
 
-    public Mergely(final String lhs, final boolean lhsReadonly, final String rhs, final boolean rhsReadonly) {
+    private final boolean lineNumbers;
+
+    public Mergely(final String lhs, final boolean lhsReadonly, final String rhs, final boolean rhsReadonly, final boolean lineNumbers) {
         elementId =  MERGELY_DIV_ID_PREFIX + nextId++;
         this.lhs = lhs;
         this.rhs = rhs;
         this.lhsReadonly = lhsReadonly;
         this.rhsReadonly = rhsReadonly;
+        this.lineNumbers = lineNumbers;
 
         final HTML html = new HTML("<div style=\"width: 100%; height: 100%;\" id=\"" + elementId + "\"");
         initWidget(html);
-    }
-
-    @Override
-    public void onResize() {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     /** Called after a the widget is added to the DOM. Add the ACE editor */
@@ -46,6 +44,7 @@ public class Mergely extends Composite implements RequiresResize {
     {
         LOGGER.log(Level.INFO, "ENTER Mergely.onLoad()");
         super.onLoad();
+
         startMergely();
         LOGGER.log(Level.INFO, "EXIT Mergely.onLoad()");
     }
@@ -57,7 +56,7 @@ public class Mergely extends Composite implements RequiresResize {
         }
 
         $wnd.jQuery('#' + this.@org.jboss.pressgang.mergelygwt.client.Mergely::elementId).mergely({
-            cmsettings: { lineNumbers: true },
+            cmsettings: { lineNumbers: this.@org.jboss.pressgang.mergelygwt.client.Mergely::lineNumbers },
             lhs_cmsettings: {readOnly: this.@org.jboss.pressgang.mergelygwt.client.Mergely::lhsReadonly},
             rhs_cmsettings: {readOnly: this.@org.jboss.pressgang.mergelygwt.client.Mergely::rhsReadonly},
             lhs: function(setValue) {
