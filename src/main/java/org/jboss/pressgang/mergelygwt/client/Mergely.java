@@ -80,10 +80,13 @@ public class Mergely extends Composite {
                 return function(setValue) {
                     setValue(text);
                 };
-            }(this.@org.jboss.pressgang.mergelygwt.client.Mergely::rhs)
+            }(this.@org.jboss.pressgang.mergelygwt.client.Mergely::rhs),
+            loaded: function() {
+                $wnd.jQuery('#' + this.@org.jboss.pressgang.mergelygwt.client.Mergely::elementId).mergely('resize');
+            }
         });
 
-        $wnd.jQuery('#' + this.@org.jboss.pressgang.mergelygwt.client.Mergely::elementId).mergely('resize');
+
     }-*/;
 
     public native String getLhs() /*-{
