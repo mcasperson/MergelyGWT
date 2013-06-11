@@ -46,7 +46,7 @@ public class Mergely extends Composite {
         initWidget(html);
     }
 
-    /** Called after a the widget is added to the DOM. Add the ACE editor */
+    /** Called after a the widget is added to the DOM. Add the Mergely editor */
     @Override
     protected void onLoad()
     {
@@ -67,12 +67,16 @@ public class Mergely extends Composite {
             cmsettings: { lineNumbers: this.@org.jboss.pressgang.mergelygwt.client.Mergely::lineNumbers },
             lhs_cmsettings: {readOnly: this.@org.jboss.pressgang.mergelygwt.client.Mergely::lhsReadonly},
             rhs_cmsettings: {readOnly: this.@org.jboss.pressgang.mergelygwt.client.Mergely::rhsReadonly},
-            lhs: function(setValue) {
-                setValue(this.@org.jboss.pressgang.mergelygwt.client.Mergely::lhs);
-            },
-            rhs: function(setValue) {
-                setValue(this.@org.jboss.pressgang.mergelygwt.client.Mergely::rhs);
-            }
+            lhs: function(text) {
+                return function(setValue) {
+                    setValue(text);
+                };
+            }(this.@org.jboss.pressgang.mergelygwt.client.Mergely::lhs),
+            rhs: function(text) {
+                return function(setValue) {
+                    setValue(text);
+                };
+            }(this.@org.jboss.pressgang.mergelygwt.client.Mergely::rhs)
         });
     }-*/;
 
