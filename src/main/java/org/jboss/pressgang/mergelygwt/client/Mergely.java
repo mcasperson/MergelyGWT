@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 /**
  * A wrapper around the Mergely library - http://www.mergely.com/about.php
  */
-public class Mergely extends Composite {
+public class Mergely extends Composite implements RequiresResize {
 
     private static final String MERGELY_DIV_ID_PREFIX = "mergely";
     private static final Logger LOGGER = Logger.getLogger(Mergely.class.getName());
@@ -97,4 +97,9 @@ public class Mergely extends Composite {
     public native void resize() /*-{
         return $wnd.jQuery('#' + this.@org.jboss.pressgang.mergelygwt.client.Mergely::elementId).mergely('resize');
     }-*/;
+
+    @Override
+    public void onResize() {
+        resize();
+    }
 }
