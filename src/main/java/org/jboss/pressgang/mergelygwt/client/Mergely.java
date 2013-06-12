@@ -23,8 +23,11 @@ public class Mergely extends Composite implements RequiresResize {
     private final String rhs;
     private final boolean lhsReadonly;
     private final boolean rhsReadonly;
-
     private final boolean lineNumbers;
+    private final String mode;
+    private final boolean lineWrapping;
+
+    private boolean attached = false;
 
     /**
      *
@@ -34,17 +37,18 @@ public class Mergely extends Composite implements RequiresResize {
      * @param rhsReadonly true if the right hand side should be readonly, and false otherwise
      * @param lineNumbers true if line number should be displayed, and false otherwise
      */
-    public Mergely(final String lhs, final boolean lhsReadonly, final String rhs, final boolean rhsReadonly, final boolean lineNumbers) {
+    public Mergely(final String lhs, final boolean lhsReadonly, final String rhs, final boolean rhsReadonly,
+                   final boolean lineNumbers, final String mode, final boolean lineWrapping) {
         elementId =  MERGELY_DIV_ID_PREFIX + nextId++;
         this.lhs = lhs;
         this.rhs = rhs;
         this.lhsReadonly = lhsReadonly;
         this.rhsReadonly = rhsReadonly;
         this.lineNumbers = lineNumbers;
+        this.mode = mode;
+        this.lineWrapping = lineWrapping;
 
         final HTML html = new HTML("<div style=\"position: absolute; bottom: 0; top: 0; left: 0; right:0;\"><div id=\"" + elementId + "\"></div></div>");
-        //final HTML html = new HTML("<div style=\"width: 100%; height: 100%; position: relative;\">"
-        //        + "<div style=\"top: 0px; bottom: 0px; left: 0px; right: 0px;\" id=\"" + elementId + "\"></div>" + "</div>");
         initWidget(html);
     }
 
@@ -54,7 +58,6 @@ public class Mergely extends Composite implements RequiresResize {
     {
         LOGGER.log(Level.INFO, "ENTER Mergely.onLoad()");
         super.onLoad();
-
         startMergely();
         LOGGER.log(Level.INFO, "EXIT Mergely.onLoad()");
     }
@@ -65,23 +68,32 @@ public class Mergely extends Composite implements RequiresResize {
             return;
         }
 
-        $wnd.jQuery('#' + this.@org.jboss.pressgang.mergelygwt.client.Mergely::elementId).mergely({
-            cmsettings: { lineNumbers: this.@org.jboss.pressgang.mergelygwt.client.Mergely::lineNumbers },
-            lhs_cmsettings: {readOnly: this.@org.jboss.pressgang.mergelygwt.client.Mergely::lhsReadonly},
-            rhs_cmsettings: {readOnly: this.@org.jboss.pressgang.mergelygwt.client.Mergely::rhsReadonly},
-            width: 'auto',
-            height: 'auto',
-            lhs: function(text) {
-                return function(setValue) {
-                    setValue(text);
-                };
-            }(this.@org.jboss.pressgang.mergelygwt.client.Mergely::lhs),
-            rhs: function(text) {
-                return function(setValue) {
-                    setValue(text);
-                };
-            }(this.@org.jboss.pressgang.mergelygwt.client.Mergely::rhs)
-        });
+        if (!this.@org.jboss.pressgang.mergelygwt.client.Mergely::attached) {
+			this.@org.jboss.pressgang.mergelygwt.client.Mergely::attached = true;
+
+            $wnd.jQuery('#' + this.@org.jboss.pressgang.mergelygwt.client.Mergely::elementId).mergely({
+                cmsettings: {
+                    lineNumbers: this.@org.jboss.pressgang.mergelygwt.client.Mergely::lineNumbers,
+                    lineWrapping: this.@org.jboss.pressgang.mergelygwt.client.Mergely::lineWrapping,
+                    mode: this.@org.jboss.pressgang.mergelygwt.client.Mergely::mode
+                },
+                lhs_cmsettings: {readOnly: this.@org.jboss.pressgang.mergelygwt.client.Mergely::lhsReadonly},
+                rhs_cmsettings: {readOnly: this.@org.jboss.pressgang.mergelygwt.client.Mergely::rhsReadonly},
+				resize_timeout: 0,
+                width: 'auto',
+                height: 'auto',
+                lhs: function(text) {
+                    return function(setValue) {
+                        setValue(text);
+                    };
+                }(this.@org.jboss.pressgang.mergelygwt.client.Mergely::lhs),
+                rhs: function(text) {
+                    return function(setValue) {
+                        setValue(text);
+                    };
+                }(this.@org.jboss.pressgang.mergelygwt.client.Mergely::rhs)
+            });
+		}
 
 
     }-*/;
@@ -100,6 +112,8 @@ public class Mergely extends Composite implements RequiresResize {
 
     @Override
     public void onResize() {
+        LOGGER.log(Level.INFO, "ENTER Mergely.onResize()");
         resize();
+        LOGGER.log(Level.INFO, "EXIT Mergely.onResize()");
     }
 }

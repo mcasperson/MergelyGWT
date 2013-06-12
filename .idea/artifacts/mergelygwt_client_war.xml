@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="mergelygwt-client:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="mergelygwt-client-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="mergelygwt-client:war exploded" />
+    </root>
+  </artifact>
+</component>
